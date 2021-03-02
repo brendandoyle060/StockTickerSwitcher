@@ -2,7 +2,8 @@
 
 // Called when the user clicks on the browser action.
 chrome.browserAction.onClicked.addListener(function(tab) {
-	alert("YO " + tab.url);
+	// alert("YO " + tab.url);
+
   // Send a message to the active tab
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     var activeTab = tabs[0];
@@ -10,7 +11,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   });
 });
 
-// This block is new!
+// Open new tab
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "open_new_tab" ) {
