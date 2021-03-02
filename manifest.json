@@ -20,7 +20,6 @@
    "default_icon": "yahoo-icon.png"
   },
   "permissions": [
-   "activeTab",
    "tabs"
   ]
 }
