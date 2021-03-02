@@ -3,7 +3,7 @@
 
   "name": "Robinhood to Yahoo Finance",
   "description": "From a stock page on robinhood.com, open the same ticker on Yahoo! Finance.",
-  "version": "0.1",
+  "version": "1.0",
   "content_scripts": [
     {
       "matches": [
