@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+
+  "name": "Robinhood to Yahoo Finance",
+  "description": "If you're on the page for a specific stock on robinhood.com, clicking on this extension will open up the page for the same ticker on Yahoo! Finance.",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://robinhood.com/stocks/*"
+      ],
+      "js": ["jquery-3.5.1.min.js", "content.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "browser_action": {
+   "default_icon": "yahoo-icon.png"
+  },
+  "permissions": [
+   "activeTab",
+   "tabs"
+  ]
+}
