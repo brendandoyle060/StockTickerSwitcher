@@ -3,7 +3,7 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "clicked_browser_action" ) {
 
-      var ticker = getTicker(request.url);
+      var ticker = getTicker();
       console.log(ticker);
       var yahooBoi = "https://finance.yahoo.com/quote/" + ticker;
       chrome.runtime.sendMessage({"message": "open_new_tab", "url": yahooBoi});
@@ -12,8 +12,9 @@ chrome.runtime.onMessage.addListener(
   }
 );
 
-function getTicker(url) {
-  var arr = url.split("/");
-  var len = arr.length;
-  return arr[len-1];
+function getTicker() {
+	var titleElement = document.querySelector("title");
+	var title = titleElement.textContent;
+	var splitTitle = title.split(" ");
+	return splitTitle[0];
 }
