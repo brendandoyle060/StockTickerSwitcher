@@ -12,18 +12,18 @@
 
             if ( request.message === "clicked_browser_action" ) {
 
-              console.log("message received: clicked_browser_action");
-              console.log(request);
-              console.log(sender);
+                console.log("message received: clicked_browser_action");
+                console.log(request);
+                console.log(sender);
 
-              var ticker = getTicker();
-              console.log(ticker);
-              var yahooBoi = "https://finance.yahoo.com/quote/" + ticker;
+                var ticker = getTicker();
+                console.log(ticker);
+                var yahooBoi = "https://finance.yahoo.com/quote/" + ticker;
 
-              chrome.runtime.sendMessage({
-                "message": "open_new_tab", 
-                "url": yahooBoi
-              });
+                chrome.runtime.sendMessage({
+                    "message": "open_new_tab",
+                    "url": yahooBoi
+                });
 
             }
         }
