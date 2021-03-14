@@ -27,7 +27,8 @@
                 // Open a new tab to that url
                 chrome.runtime.sendMessage({
                     "message": "open_new_tab",
-                    "url": yahooBoi
+                    "url": yahooBoi,
+                    "index": request.index
                 });
 
             }

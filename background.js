@@ -37,10 +37,11 @@ chrome.browserAction.onClicked.addListener(function inject(tab) {
         // console.log("tabs.length: " + tabs.length);
 
         var activeTab = tabs[0];
-
+        var index = activeTab.index;
         chrome.tabs.sendMessage(activeTab.id, {
             "message": "clicked_browser_action", 
-            "url": tab.url
+            "url": tab.url,
+            "index": index + 1
         });
 
             // console.log("sendMessage - tab url: " + tab.url);
@@ -65,7 +66,8 @@ chrome.runtime.onMessage.addListener(
         // console.log("chrome.runtime.onMessage.addListener - open_new_tab");
         if( request.message === "open_new_tab" ) {
             chrome.tabs.create({
-                "url": request.url
+                url: request.url,
+                index: request.index
             });
             // console.log("opened new tab");
         }
