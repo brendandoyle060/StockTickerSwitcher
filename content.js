@@ -12,9 +12,9 @@
 
             if ( request.message === "clicked_browser_action" ) {
 
-                console.log("message received: clicked_browser_action");
-                console.log(request);
-                console.log(sender);
+                // console.log("message received: clicked_browser_action");
+                // console.log(request);
+                // console.log(sender);
 
                 var ticker = getTicker();
                 console.log(ticker);
