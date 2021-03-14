@@ -2,12 +2,13 @@
     "manifest_version": 2,
 
     "name": "Robinhood to Yahoo Finance",
-    "description": "From a stock page on robinhood.com, open the same ticker on Yahoo! Finance.",
-    "version": "1.0",
+    "description": "Easily jump from a stock's page on robinhood.com to the same ticker on Yahoo! Finance.",
+    "version": "1.0.1",
     "content_scripts": [
         {
             "matches": [
-                "https://robinhood.com/stocks/*"
+                "https://robinhood.com/stocks/*", 
+                "https://robinhood.com/crypto/*"
             ],
             "js": ["jquery-3.5.1.min.js", "content.js"]
         }
@@ -20,6 +21,7 @@
         "default_icon": "yahoo-icon.png"
     },
     "permissions": [
-        "tabs", "https://robinhood.com/*"
+        "tabs", 
+        "https://robinhood.com/*"
     ]
 }

@@ -3,14 +3,28 @@
 // Called when the user clicks on the browser action.
 chrome.browserAction.onClicked.addListener(function inject(tab) {
 
-    // Break if we're not on a stocks page
-    if (!tab.url || !tab.url.startsWith('https://robinhood.com/stocks/')){
+    // console.log("browserAction onClicked");
+
+    // Break if we're not on a stocks or crypto page
+    if ( !isValidPage(tab.url) ){
+        // console.log("if !isValidPage");
         return;
     }
 
     // console.log("created inject listener");
 
-    chrome.tabs.executeScript(null,{file:"content.js"}, function(results){console.log(results);});
+    // var myCode = "console.log('Testing...this code will execute as a content script');";
+    chrome.tabs.executeScript(
+        null,
+        {
+            file: "content.js"
+        }, 
+        function(){
+            if(chrome.runtime.lastError) {
+                console.error("Script injection failed: " + chrome.runtime.lastError.message);
+            }
+        }
+    );
     // console.log("chrome.tabs.executeScript content.js");
 
     // Send a message to the active tab
@@ -34,6 +48,16 @@ chrome.browserAction.onClicked.addListener(function inject(tab) {
     });
 
 });
+
+function isValidPage(url) {
+    // console.log("isValidPage? url: " + url);
+    // console.log("!url.startsWith('https://robinhood.com/stocks/')");
+    // console.log(url.startsWith('https://robinhood.com/stocks/'));
+    // console.log("!url.startsWith('https://robinhood.com/crypto/')");
+    // console.log(url.startsWith('https://robinhood.com/crypto/'));
+
+    return url.startsWith('https://robinhood.com/stocks/') || url.startsWith('https://robinhood.com/crypto/');
+}
 
 // Open new tab
 chrome.runtime.onMessage.addListener(
