@@ -9,10 +9,7 @@
                 "https://robinhood.com/stocks/*",
                 "https://robinhood.com/crypto/*"
             ],
-            "js": [
-                "jquery-3.5.1.min.js",
-                "content.js"
-            ]
+            "js": ["jquery-3.5.1.min.js", "content.js"]
         }
     ],
     "background": {
@@ -25,11 +22,6 @@
         "page": "options.html",
         "open_in_tab": false
     },
-    "permissions": [
-        "tabs",
-        "scripting"
-    ],
-    "host_permissions": [
-        "https://robinhood.com/*"
-    ]
+    "permissions": ["tabs", "scripting"],
+    "host_permissions": ["https://robinhood.com/*"]
 }
