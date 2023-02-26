@@ -1,0 +1,23 @@
+{
+    "name": "robinhoodtoyahoofinance",
+    "version": "1.0.0",
+    "description": "",
+    "main": "background.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/brendandoyle060/RobinhoodToYahooFinance.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/brendandoyle060/RobinhoodToYahooFinance/issues"
+    },
+    "homepage": "https://github.com/brendandoyle060/RobinhoodToYahooFinance#readme",
+    "devDependencies": {
+        "jest": "^29.4.3"
+    }
+}
