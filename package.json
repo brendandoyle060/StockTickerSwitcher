@@ -19,5 +19,8 @@
     "homepage": "https://github.com/brendandoyle060/RobinhoodToYahooFinance#readme",
     "devDependencies": {
         "chrome-types": "^0.1.175"
+    },
+    "dependencies": {
+        "@types/chrome": "^0.0.218"
     }
 }
