@@ -14,6 +14,6 @@ class Robinhood extends Site {
     }
 
     getUrlForTicker(ticker: Ticker): string {
-        return `${this.baseUrl}/${ticker.type}/${ticker}/`;
+        return `${this.baseUrl}/${ticker.type}/${ticker.symbol}/`;
     }
 }
