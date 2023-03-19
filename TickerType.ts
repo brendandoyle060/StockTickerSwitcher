@@ -1,8 +1,8 @@
 enum TickerType {
-    STOCK,
-    ETF,
-    MUTUALFUND,
-    CRYPTO,
-    FUTURE,
-    BOND,
+    STOCK = "stock",
+    ETF = "etf",
+    MUTUALFUND = "mutualfund",
+    CRYPTO = "crypto",
+    FUTURE = "future",
+    BOND = "bond",
 }
