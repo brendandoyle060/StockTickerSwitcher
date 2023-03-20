@@ -9,9 +9,3 @@ class Ticker {
         this.type = type;
     }
 }
-
-class Stock extends Ticker {
-    constructor(symbol: string, name: string) {
-        super(symbol, name, TickerType.STOCK);
-    }
-}
