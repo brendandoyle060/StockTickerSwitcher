@@ -3,7 +3,11 @@ class YahooFinance extends Site {
         super("Yahoo! Finance", `https://finance.yahoo.com`);
     }
 
-    getUrlForTicker(ticker: Ticker): string {
-        return `${this.baseUrl}/${ticker.type}/${ticker.symbol}/`;
+    createUrlForTicker(ticker: Ticker): string {
+        let symbol = ticker.symbol;
+        if (ticker.type === TickerType.CRYPTO) {
+            symbol = symbol + "-USD";
+        }
+        return `${this.baseUrl}/quote/${symbol}`;
     }
 }
