@@ -54,12 +54,6 @@ chrome.action.onClicked.addListener(function inject(tab) {
 });
 
 function isValidPage(url) {
-    // console.log("isValidPage? url: " + url);
-    // console.log("!url.startsWith('https://robinhood.com/stocks/')");
-    // console.log(url.startsWith('https://robinhood.com/stocks/'));
-    // console.log("!url.startsWith('https://robinhood.com/crypto/')");
-    // console.log(url.startsWith('https://robinhood.com/crypto/'));
-
     return (
         url.startsWith("https://robinhood.com/stocks/") ||
         url.startsWith("https://robinhood.com/crypto/")
