@@ -9,7 +9,7 @@
                 "https://robinhood.com/stocks/*",
                 "https://robinhood.com/crypto/*"
             ],
-            "js": ["jquery-3.5.1.min.js", "content.js"]
+            "js": ["jquery-3.5.1.min.js", "dist/contentScript.js"]
         }
     ],
     "background": {
