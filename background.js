@@ -5,7 +5,7 @@ chrome.action.onClicked.addListener(function inject(tab) {
     // console.log("action onClicked");
 
     // Break if we're not on a stocks or crypto page
-    if (!isValidPage(tab.url)) {
+    if (!isSupportedPage(tab.url)) {
         // console.log("if !isValidPage");
         return;
     }
@@ -53,7 +53,7 @@ chrome.action.onClicked.addListener(function inject(tab) {
     );
 });
 
-function isValidPage(url) {
+function isSupportedPage(url) {
     return (
         url.startsWith("https://robinhood.com/stocks/") ||
         url.startsWith("https://robinhood.com/crypto/")
