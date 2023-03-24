@@ -2,15 +2,10 @@
 
 // Called when the user clicks on the browser action.
 chrome.action.onClicked.addListener(function inject(tab) {
-    // console.log("action onClicked");
-
     // Break if we're not on a stocks or crypto page
     if (!isSupportedPage(tab.url)) {
-        // console.log("if !isValidPage");
         return;
     }
-
-    // console.log("created inject listener");
 
     // var myCode = "console.log('Testing...this code will execute as a content script');";
     chrome.scripting.executeScript(
@@ -27,7 +22,6 @@ chrome.action.onClicked.addListener(function inject(tab) {
             }
         }
     );
-    // console.log("chrome.scripting.executeScript content.js");
 
     // Send a message to the active tab
     chrome.tabs.query(
@@ -36,9 +30,6 @@ chrome.action.onClicked.addListener(function inject(tab) {
             lastFocusedWindow: true,
         },
         function (tabs) {
-            // console.log("chrome.tabs.query");
-            // console.log("tabs.length: " + tabs.length);
-
             var activeTab = tabs[0];
             var index = activeTab.index;
             chrome.tabs.sendMessage(activeTab.id, {
@@ -46,9 +37,6 @@ chrome.action.onClicked.addListener(function inject(tab) {
                 url: tab.url,
                 index: index + 1,
             });
-
-            // console.log("sendMessage - tab url: " + tab.url);
-            // console.log("end chrome.tabs.query");
         }
     );
 });
@@ -66,15 +54,10 @@ chrome.runtime.onMessage.addListener(function openNewTab(
     sender,
     sendResponse
 ) {
-    // console.log("chrome.runtime.onMessage.addListener - open_new_tab");
     if (request.message === "open_new_tab") {
         chrome.tabs.create({
             url: request.url,
             index: request.index,
         });
-        // console.log("opened new tab");
     }
-
-    // console.log(request);
-    // console.log(sender);
 });
