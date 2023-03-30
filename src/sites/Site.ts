@@ -1,4 +1,4 @@
-class Site {
+export class Site {
     name: string;
     baseUrl: string;
 

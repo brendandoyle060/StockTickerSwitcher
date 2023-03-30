@@ -1,10 +1,14 @@
-class Robinhood extends Site {
+import { Site } from "./Site";
+import { TickerType } from "../tickers/TickerType";
+import { Ticker } from "../tickers/Ticker";
+
+export class Robinhood extends Site {
     constructor() {
         super("Robinhood", `https://robinhood.com`);
     }
 
     createUrlForTicker(ticker: Ticker): string {
-        return `${this.baseUrl}/${ticker.type}/${ticker.symbol}/`;
+        return `${this.baseUrl}/${ticker.tickerType.value}/${ticker.symbol}/`;
     }
 
     getTicker(url: string, document: Document): Ticker {
@@ -13,7 +17,6 @@ class Robinhood extends Site {
         var splitTitle = title.split(" ");
 
         let tickerString = splitTitle[0];
-        console.log("tickerString: " + tickerString);
         return new Ticker(
             tickerString,
             this.getName(document),
@@ -23,11 +26,11 @@ class Robinhood extends Site {
 
     getTickerType(url: string, document: Document): TickerType {
         if (this.isEtf(document)) {
-            return TickerType.ETF;
+            return new TickerType("etf");
         } else if (this.isCrypto(url)) {
-            return TickerType.CRYPTO;
+            return new TickerType("crypto");
         } else {
-            return TickerType.STOCK;
+            return new TickerType("stock");
         }
     }
 

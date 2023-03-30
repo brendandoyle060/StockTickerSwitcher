@@ -1,4 +1,6 @@
-// background.js
+import { YahooFinance } from "../sites/YahooFinance";
+import { TickerType } from "../tickers/TickerType";
+import { Ticker } from "../tickers/Ticker";
 
 // Called when the user clicks on the browser action.
 chrome.action.onClicked.addListener(function inject(tab) {
@@ -7,23 +9,6 @@ chrome.action.onClicked.addListener(function inject(tab) {
         return;
     }
 
-    // var myCode = "console.log('Testing...this code will execute as a content script');";
-    chrome.scripting.executeScript(
-        {
-            target: { tabId: tab.id },
-            files: ["content.js"],
-        },
-        function () {
-            if (chrome.runtime.lastError) {
-                console.error(
-                    "Script injection failed: " +
-                        chrome.runtime.lastError.message
-                );
-            }
-        }
-    );
-
-    // Send a message to the active tab
     chrome.tabs.query(
         {
             active: true,
@@ -41,7 +26,7 @@ chrome.action.onClicked.addListener(function inject(tab) {
     );
 });
 
-function isSupportedPage(url) {
+function isSupportedPage(url: string) {
     return (
         url.startsWith("https://robinhood.com/stocks/") ||
         url.startsWith("https://robinhood.com/crypto/")
@@ -55,8 +40,18 @@ chrome.runtime.onMessage.addListener(function openNewTab(
     sendResponse
 ) {
     if (request.message === "open_new_tab") {
+        let yh = new YahooFinance();
+
+        let newTicker = new Ticker(
+            request.tickerSymbol,
+            request.tickerName,
+            new TickerType(request.tickerType)
+        );
+        console.log("serviceWorker ticker: " + newTicker.toString());
+
+        let url = yh.createUrlForTicker(newTicker);
         chrome.tabs.create({
-            url: request.url,
+            url: url,
             index: request.index,
         });
     }

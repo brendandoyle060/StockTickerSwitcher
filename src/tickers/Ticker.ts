@@ -1,11 +1,17 @@
-class Ticker {
+import { TickerType } from "./TickerType";
+
+export class Ticker {
     symbol: string;
     name: string;
-    type: TickerType;
+    tickerType: TickerType;
 
-    constructor(symbol: string, name: string, type: TickerType) {
+    constructor(symbol: string, name: string, tickerType: TickerType) {
         this.symbol = symbol;
         this.name = name;
-        this.type = type;
+        this.tickerType = tickerType;
+    }
+
+    toString(): string {
+        return `Ticker - symbol: ${this.symbol}, name: ${this.name}, type: ${this.tickerType}`;
     }
 }
