@@ -1,3 +1,5 @@
+import { Ticker } from "../tickers/Ticker";
+
 export class Site {
     name: string;
     baseUrl: string;
@@ -6,4 +8,10 @@ export class Site {
         this.name = name;
         this.baseUrl = baseUrl;
     }
+
+    is() {
+        return this.name;
+    }
+
+    createUrlForTicker(ticker: Ticker) {}
 }
