@@ -5,7 +5,6 @@ import { Stock } from "../../src/tickers/Stock";
 import { Ticker } from "../../src/tickers/Ticker";
 import { JSDOM } from "jsdom";
 
-import { TickerType } from "../../src/tickers/TickerType";
 import { getDoc } from "../utils/helpers";
 
 describe("Testing Robinhood", () => {
@@ -15,17 +14,17 @@ describe("Testing Robinhood", () => {
         [
             "stock-gme",
             "https://robinhood.com/stocks/GME",
-            new Ticker("GME", "GameStop", new TickerType("stock")),
+            new Stock("GME", "GameStop"),
         ],
         [
             "etf-spy",
             "https://robinhood.com/stocks/SPY",
-            new Ticker("SPY", "SPDR S&P 500 ETF", new TickerType("etf")),
+            new Etf("SPY", "SPDR S&P 500 ETF"),
         ],
         [
             "crypto-eth",
             "https://robinhood.com/crypto/ETH",
-            new Ticker("ETH", "Ethereum", new TickerType("crypto")),
+            new Crypto("ETH", "Ethereum"),
         ],
     ])(
         "getTicker on %s and %s, expecting %s",
