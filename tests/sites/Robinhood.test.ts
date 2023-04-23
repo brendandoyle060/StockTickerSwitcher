@@ -40,7 +40,7 @@ describe("Testing Robinhood", () => {
         ["etf-spy", "https://robinhood.com/stocks/SPY", true, false],
         ["crypto-eth", "https://robinhood.com/crypto/ETH", false, true],
     ])(
-        "isEtf and isCrypto on %s and %s, expecting %b and %b",
+        "isEtf and isCrypto on %s and %s, expecting %p and %p",
         (filename: string, url: string, isEtf: boolean, isCrypto: boolean) => {
             let html = getDoc(rh.name, filename);
             let dom = new JSDOM(html, { runScripts: "outside-only" });
