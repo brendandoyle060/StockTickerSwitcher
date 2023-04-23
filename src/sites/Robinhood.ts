@@ -8,7 +8,12 @@ export class Robinhood extends Site {
     }
 
     createUrlForTicker(ticker: Ticker): string {
-        return `${this.baseUrl}/${ticker.tickerType.value}/${ticker.symbol}/`;
+        if (ticker.tickerType.value === "crypto") {
+            return `${this.baseUrl}/${ticker.tickerType.value}/${ticker.symbol}`;
+        } else {
+            // ETFs also get the 'stocks' path in the url on RH
+            return `${this.baseUrl}/stocks/${ticker.symbol}`;
+        }
     }
 
     getTicker(url: string, document: Document): Ticker {
