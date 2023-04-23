@@ -1,13 +1,9 @@
 import { Robinhood } from "../../src/sites/Robinhood";
-import { Crypto } from "../../src/tickers/Crypto";
-import { Etf } from "../../src/tickers/Etf";
-import { Stock } from "../../src/tickers/Stock";
 import { Ticker } from "../../src/tickers/Ticker";
 import { JSDOM } from "jsdom";
 
-import fs from "fs";
-import path from "path";
 import { TickerType } from "../../src/tickers/TickerType";
+import { getDoc } from "../utils/helpers";
 
 describe("Testing Robinhood", () => {
     var rh: Robinhood = new Robinhood();
@@ -31,17 +27,27 @@ describe("Testing Robinhood", () => {
     ])(
         "getTicker on %s and %s, expecting %s",
         (filename: string, url: string, ticker: Ticker) => {
-            let html = fs.readFileSync(
-                path.resolve(
-                    __dirname,
-                    `../resources/sites/Robinhood/${filename}.html`
-                ),
-                "utf8"
-            );
+            let html = getDoc(rh.name, filename);
             let dom = new JSDOM(html, { runScripts: "outside-only" });
             let doc = dom.window.document;
 
             expect(rh.getTicker(url, doc)).toEqual(ticker);
+        }
+    );
+
+    test.each([
+        ["stock-gme", "https://robinhood.com/stocks/GME", false, false],
+        ["etf-spy", "https://robinhood.com/stocks/SPY", true, false],
+        ["crypto-eth", "https://robinhood.com/crypto/ETH", false, true],
+    ])(
+        "isEtf and isCrypto on %s and %s, expecting %b and %b",
+        (filename: string, url: string, isEtf: boolean, isCrypto: boolean) => {
+            let html = getDoc(rh.name, filename);
+            let dom = new JSDOM(html, { runScripts: "outside-only" });
+            let doc = dom.window.document;
+
+            expect(rh.isEtf(doc)).toEqual(isEtf);
+            expect(rh.isCrypto(url)).toEqual(isCrypto);
         }
     );
 });
