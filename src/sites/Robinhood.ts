@@ -29,16 +29,6 @@ export class Robinhood extends Site {
         );
     }
 
-    getTickerType(url: string, document: Document): TickerType {
-        if (this.isEtf(document)) {
-            return new TickerType("etf");
-        } else if (this.isCrypto(url)) {
-            return new TickerType("crypto");
-        } else {
-            return new TickerType("stock");
-        }
-    }
-
     getName(document: Document): string {
         return document.querySelector("main header h1").textContent.trim();
     }
