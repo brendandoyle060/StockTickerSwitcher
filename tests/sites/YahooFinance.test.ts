@@ -7,7 +7,7 @@ import { Ticker } from "../../src/tickers/Ticker";
 describe("Testing YahooFinance", () => {
     var yf: YahooFinance = new YahooFinance();
 
-    test.each([
+    test.concurrent.each([
         [
             new Stock("WM", "Waste Management"),
             "https://finance.yahoo.com/quote/WM",

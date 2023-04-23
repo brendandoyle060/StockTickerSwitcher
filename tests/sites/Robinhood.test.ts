@@ -8,7 +8,7 @@ import { getDoc } from "../utils/helpers";
 describe("Testing Robinhood", () => {
     var rh: Robinhood = new Robinhood();
 
-    test.each([
+    test.concurrent.each([
         [
             "stock-gme",
             "https://robinhood.com/stocks/GME",
@@ -35,7 +35,7 @@ describe("Testing Robinhood", () => {
         }
     );
 
-    test.each([
+    test.concurrent.each([
         ["stock-gme", "https://robinhood.com/stocks/GME", false, false],
         ["etf-spy", "https://robinhood.com/stocks/SPY", true, false],
         ["crypto-eth", "https://robinhood.com/crypto/ETH", false, true],

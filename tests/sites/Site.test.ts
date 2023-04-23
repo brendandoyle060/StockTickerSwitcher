@@ -13,7 +13,7 @@ describe("Testing All Sites", () => {
     var allSites = [rh, yf];
 
     allSites.forEach((site: Site) =>
-        test.each([
+        test.concurrent.each([
             [
                 new Stock("WM", "Waste Management"),
                 "https://robinhood.com/stocks/WM",
