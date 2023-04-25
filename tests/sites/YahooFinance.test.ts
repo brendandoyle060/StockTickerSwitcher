@@ -31,46 +31,46 @@ describe("Testing YahooFinance", () => {
     );
 
     // Tests for YF -> RH
-    // test.concurrent.each([
-    //     [
-    //         "stock-gme",
-    //         "https://finance.yahoo.com/quote/GME",
-    //         new Stock("GME", "GameStop"),
-    //     ],
-    //     [
-    //         "etf-spy",
-    //         "https://finance.yahoo.com/quote/SPY",
-    //         new Etf("SPY", "SPDR S&P 500 ETF"),
-    //     ],
-    //     [
-    //         "crypto-eth",
-    //         "https://finance.yahoo.com/quote/ETH-USD",
-    //         new Crypto("ETH", "Ethereum"),
-    //     ],
-    // ])(
-    //     "getTicker on %s and %s, expecting %s",
-    //     (filename: string, url: string, ticker: Ticker) => {
-    //         let html = getDoc(yf.name, filename);
-    //         let dom = new JSDOM(html, { runScripts: "outside-only" });
-    //         let doc = dom.window.document;
+    test.concurrent.each([
+        [
+            "stock-gme",
+            "https://finance.yahoo.com/quote/GME",
+            new Stock("GME", "GameStop"),
+        ],
+        [
+            "etf-spy",
+            "https://finance.yahoo.com/quote/SPY",
+            new Etf("SPY", "SPDR S&P 500 ETF"),
+        ],
+        [
+            "crypto-eth",
+            "https://finance.yahoo.com/quote/ETH-USD",
+            new Crypto("ETH", "Ethereum"),
+        ],
+    ])(
+        "getTicker on %s and %s, expecting %s",
+        (filename: string, url: string, ticker: Ticker) => {
+            let html = getDoc(yf.name, filename);
+            let dom = new JSDOM(html, { runScripts: "outside-only" });
+            let doc = dom.window.document;
 
-    //         expect(yf.getTicker(url, doc)).toEqual(ticker);
-    //     }
-    // );
+            expect(yf.getTicker(url, doc).equals(ticker)).toBeTruthy();
+        }
+    );
 
-    // test.concurrent.each([
-    //     ["stock-gme", "https://finance.yahoo.com/quote/GME", false, false],
-    //     ["etf-spy", "https://finance.yahoo.com/quote/SPY", true, false],
-    //     ["crypto-eth", "https://finance.yahoo.com/quote/ETH-USD", false, true],
-    // ])(
-    //     "isEtf and isCrypto on %s and %s, expecting %p and %p",
-    //     (filename: string, url: string, isEtf: boolean, isCrypto: boolean) => {
-    //         let html = getDoc(yf.name, filename);
-    //         let dom = new JSDOM(html, { runScripts: "outside-only" });
-    //         let doc = dom.window.document;
+    test.concurrent.each([
+        ["stock-gme", "https://finance.yahoo.com/quote/GME", false, false],
+        ["etf-spy", "https://finance.yahoo.com/quote/SPY", true, false],
+        ["crypto-eth", "https://finance.yahoo.com/quote/ETH-USD", false, true],
+    ])(
+        "isEtf and isCrypto on %s and %s, expecting %p and %p",
+        (filename: string, url: string, isEtf: boolean, isCrypto: boolean) => {
+            let html = getDoc(yf.name, filename);
+            let dom = new JSDOM(html, { runScripts: "outside-only" });
+            let doc = dom.window.document;
 
-    //         expect(yf.isEtf(doc)).toEqual(isEtf);
-    //         expect(yf.isCrypto(url)).toEqual(isCrypto);
-    //     }
-    // );
+            expect(yf.isEtf(doc)).toEqual(isEtf);
+            expect(yf.isCrypto(doc)).toEqual(isCrypto);
+        }
+    );
 });

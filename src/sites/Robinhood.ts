@@ -25,7 +25,7 @@ export class Robinhood extends Site {
         return new Ticker(
             tickerString,
             this.getName(document),
-            this.getTickerType(url, document)
+            this.getTickerType(this, url, document)
         );
     }
 
