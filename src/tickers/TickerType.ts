@@ -11,11 +11,15 @@ export class TickerType {
         }
     }
 
-    isValidType(tt: string) {
+    isValidType(tt: string): boolean {
         return this.VALID_TYPES.includes(tt);
     }
 
-    toString() {
+    toString(): string {
         return this.value;
+    }
+
+    equals(that: TickerType): boolean {
+        return this.value === that.value;
     }
 }
