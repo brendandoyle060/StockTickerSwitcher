@@ -3,6 +3,7 @@ export class TickerType {
     value: string;
 
     constructor(tickerType: string) {
+        tickerType = tickerType.toLowerCase().trim();
         if (this.isValidType(tickerType)) {
             this.value = tickerType;
         } else {
@@ -11,11 +12,7 @@ export class TickerType {
     }
 
     isValidType(tt: string) {
-        let lowerCase = tt.toLowerCase().trim();
-        if (this.VALID_TYPES.includes(lowerCase)) {
-            return true;
-        }
-        return false;
+        return this.VALID_TYPES.includes(tt);
     }
 
     toString() {
