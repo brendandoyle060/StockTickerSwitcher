@@ -8,19 +8,33 @@ import { Ticker } from "../tickers/Ticker";
         sendResponse
     ) {
         if (request.message === "clicked_browser_action") {
-            let rh: Robinhood = new Robinhood();
-            let ticker: Ticker = rh.getTicker(request.url, document);
-            console.log(ticker.toString());
+            if (pageHasTicker(request.url)) {
+                let rh: Robinhood = new Robinhood();
+                let ticker: Ticker = rh.getTicker(request.url, document);
+                console.log(ticker.toString());
 
-            chrome.runtime.sendMessage({
-                message: "open_new_tab",
-                tickerSymbol: ticker.symbol,
-                tickerName: ticker.name,
-                tickerType: ticker.tickerType + "",
-                index: request.index,
-            });
+                chrome.runtime.sendMessage({
+                    message: "open_new_tab",
+                    tickerSymbol: ticker.symbol,
+                    tickerName: ticker.name,
+                    tickerType: ticker.tickerType + "",
+                    index: request.index,
+                });
+            } else {
+                chrome.runtime.sendMessage({
+                    message: "open_homepage",
+                    index: request.index,
+                });
+            }
         }
     });
+
+    function pageHasTicker(url: string): boolean {
+        return (
+            url.startsWith("https://robinhood.com/stocks/") ||
+            url.startsWith("https://robinhood.com/crypto/")
+        );
+    }
 
     function getTicker(isCrypto: boolean) {
         var titleElement = document.querySelector("title");
