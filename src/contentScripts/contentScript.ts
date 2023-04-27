@@ -35,18 +35,4 @@ import { Ticker } from "../tickers/Ticker";
             url.startsWith("https://robinhood.com/crypto/")
         );
     }
-
-    function getTicker(isCrypto: boolean) {
-        var titleElement = document.querySelector("title");
-        var title = titleElement.textContent;
-        var splitTitle = title.split(" ");
-
-        let tickerString = splitTitle[0];
-        let currencyString = "-USD";
-        if (isCrypto) {
-            tickerString = tickerString + currencyString;
-        }
-        console.log("tickerString: " + tickerString);
-        return tickerString;
-    }
 })();
