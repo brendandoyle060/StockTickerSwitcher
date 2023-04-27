@@ -1,6 +1,8 @@
 import { YahooFinance } from "../sites/YahooFinance";
 import { TickerType } from "../tickers/TickerType";
 import { Ticker } from "../tickers/Ticker";
+import { Robinhood } from "../sites/Robinhood";
+import { Site } from "../sites/Site";
 
 // Called when the user clicks on the browser action.
 chrome.action.onClicked.addListener(function inject(tab) {
@@ -28,7 +30,7 @@ chrome.runtime.onMessage.addListener(function openNewTab(
     sendResponse
 ) {
     if (request.message === "open_new_tab") {
-        let yh = new YahooFinance();
+        let toSite = determineSite(request.toSite);
 
         let newTicker = new Ticker(
             request.tickerSymbol,
@@ -37,7 +39,7 @@ chrome.runtime.onMessage.addListener(function openNewTab(
         );
         console.log("serviceWorker ticker: " + newTicker.toString());
 
-        let url = yh.createUrlForTicker(newTicker);
+        let url = toSite.createUrlForTicker(newTicker);
         chrome.tabs.create({
             url: url,
             index: request.index,
@@ -51,9 +53,9 @@ chrome.runtime.onMessage.addListener(function openHomepage(
     sendResponse
 ) {
     if (request.message === "open_homepage") {
-        let yh = new YahooFinance();
+        let toSite = determineSite(request.toSite);
 
-        let url = yh.baseUrl;
+        let url = toSite.baseUrl;
         console.log("serviceWorker open_homepage url: " + url);
 
         chrome.tabs.create({
@@ -62,3 +64,13 @@ chrome.runtime.onMessage.addListener(function openHomepage(
         });
     }
 });
+
+function determineSite(site: string): Site {
+    console.log("determineSite(site): " + site);
+    site = site.toLowerCase();
+    if (site.includes("robinhood")) {
+        return new Robinhood();
+    } else {
+        return new YahooFinance();
+    }
+}

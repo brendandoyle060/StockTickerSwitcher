@@ -10,11 +10,11 @@ export class Site {
         this.baseUrl = baseUrl;
     }
 
-    is() {
+    is(): string {
         return this.name;
     }
 
-    createUrlForTicker(ticker: Ticker) {}
+    createUrlForTicker(ticker: Ticker): any {}
 
     getTickerType(site: Site, cryptoArg: any, document: Document): TickerType {
         if (site.isEtf(document)) {
