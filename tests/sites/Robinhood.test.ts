@@ -26,6 +26,16 @@ describe("Testing Robinhood", () => {
             "https://robinhood.com/crypto/ETH",
             new Crypto("ETH", "Ethereum"),
         ],
+        [
+            "stock-brka",
+            "https://robinhood.com/stocks/BRK.A",
+            new Stock("BRK.A", "Berkshire Hathaway"),
+        ],
+        [
+            "stock-brkb",
+            "https://robinhood.com/stocks/BRK.B",
+            new Stock("BRK.B", "Berkshire Hathaway"),
+        ],
     ])(
         "getTicker on %s and %s, expecting %s",
         (filename: string, url: string, ticker: Ticker) => {
@@ -41,6 +51,8 @@ describe("Testing Robinhood", () => {
         ["stock-gme", "https://robinhood.com/stocks/GME", false, false],
         ["etf-spy", "https://robinhood.com/stocks/SPY", true, false],
         ["crypto-eth", "https://robinhood.com/crypto/ETH", false, true],
+        ["stock-brka", "https://robinhood.com/stocks/BRK.A", false, false],
+        ["stock-brkb", "https://robinhood.com/stocks/BRK.B", false, false],
     ])(
         "isEtf and isCrypto on %s and %s, expecting %p and %p",
         (filename: string, url: string, isEtf: boolean, isCrypto: boolean) => {
@@ -61,6 +73,14 @@ describe("Testing Robinhood", () => {
             "https://robinhood.com/stocks/SPY",
         ],
         [new Crypto("ETH", "Ethereum"), "https://robinhood.com/crypto/ETH"],
+        [
+            new Stock("BRK.A", "Berkshire Hathaway"),
+            "https://robinhood.com/stocks/BRK.A",
+        ],
+        [
+            new Stock("BRK.B", "Berkshire Hathaway"),
+            "https://robinhood.com/stocks/BRK.B",
+        ],
     ])(
         "createUrlForTicker on %s, expecting %s",
         (ticker: Ticker, url: string) => {

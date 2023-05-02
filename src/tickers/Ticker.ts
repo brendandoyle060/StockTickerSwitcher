@@ -11,6 +11,10 @@ export class Ticker {
         this.tickerType = tickerType;
     }
 
+    getHyphenatedTickerSymbol() {
+        return this.symbol.replace(".", "-");
+    }
+
     removeExtraWhitespace(str: string): string {
         let regex = new RegExp("\\s+");
         let split = str.split(regex);

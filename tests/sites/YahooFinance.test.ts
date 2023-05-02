@@ -23,6 +23,14 @@ describe("Testing YahooFinance", () => {
             new Crypto("BTC", "Bitcoin"),
             "https://finance.yahoo.com/quote/BTC-USD",
         ],
+        [
+            new Stock("BRK.A", "Berkshire Hathaway"),
+            "https://finance.yahoo.com/quote/BRK-A",
+        ],
+        [
+            new Stock("BRK.B", "Berkshire Hathaway"),
+            "https://finance.yahoo.com/quote/BRK-B",
+        ],
     ])(
         "createUrlForTicker on %s, expecting %s",
         (ticker: Ticker, url: string) => {
@@ -47,6 +55,16 @@ describe("Testing YahooFinance", () => {
             "https://finance.yahoo.com/quote/ETH-USD",
             new Crypto("ETH", "Ethereum"),
         ],
+        [
+            "stock-brka",
+            "https://finance.yahoo.com/quote/BRK-A",
+            new Stock("BRK.A", "Berkshire Hathaway"),
+        ],
+        [
+            "stock-brkb",
+            "https://finance.yahoo.com/quote/BRK-B",
+            new Stock("BRK.B", "Berkshire Hathaway"),
+        ],
     ])(
         "getTicker on %s and %s, expecting %s",
         (filename: string, url: string, ticker: Ticker) => {
@@ -62,6 +80,8 @@ describe("Testing YahooFinance", () => {
         ["stock-gme", "https://finance.yahoo.com/quote/GME", false, false],
         ["etf-spy", "https://finance.yahoo.com/quote/SPY", true, false],
         ["crypto-eth", "https://finance.yahoo.com/quote/ETH-USD", false, true],
+        ["stock-brka", "https://finance.yahoo.com/quote/BRK-A", false, false],
+        ["stock-brkb", "https://finance.yahoo.com/quote/BRK-B", false, false],
     ])(
         "isEtf and isCrypto on %s and %s, expecting %p and %p",
         (filename: string, url: string, isEtf: boolean, isCrypto: boolean) => {

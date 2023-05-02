@@ -8,7 +8,7 @@ export class YahooFinance extends Site {
     }
 
     createUrlForTicker(ticker: Ticker): string {
-        let s: string = ticker.symbol;
+        let s: string = ticker.getHyphenatedTickerSymbol();
 
         // If the page that we're on is for a stock or ETF, then we can just leave the ticker as-is.
         // If the page that we're on is for a cryptocurrency, then we need
@@ -47,7 +47,12 @@ export class YahooFinance extends Site {
         if (isCrypto) {
             cleanedUpSymbol = cleanedUpSymbol.split("-")[0];
         }
+        cleanedUpSymbol = this.handleHyphenInTicker(cleanedUpSymbol);
         return cleanedUpSymbol;
+    }
+
+    handleHyphenInTicker(ticker: string) {
+        return ticker.replace("-", ".");
     }
 
     getCompanyHeader(document: Document): string {
