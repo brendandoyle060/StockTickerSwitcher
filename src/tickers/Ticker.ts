@@ -6,9 +6,13 @@ export class Ticker {
     tickerType: TickerType;
 
     constructor(symbol: string, name: string, tickerType: TickerType) {
-        this.symbol = symbol;
+        this.symbol = this.convertHyphenInTickerSymbol(symbol);
         this.name = this.removeExtraWhitespace(name);
         this.tickerType = tickerType;
+    }
+
+    convertHyphenInTickerSymbol(symbol: string) {
+        return symbol.replace("-", ".");
     }
 
     getHyphenatedTickerSymbol() {

@@ -47,12 +47,8 @@ export class YahooFinance extends Site {
         if (isCrypto) {
             cleanedUpSymbol = cleanedUpSymbol.split("-")[0];
         }
-        cleanedUpSymbol = this.handleHyphenInTicker(cleanedUpSymbol);
-        return cleanedUpSymbol;
-    }
 
-    handleHyphenInTicker(ticker: string) {
-        return ticker.replace("-", ".");
+        return cleanedUpSymbol;
     }
 
     getCompanyHeader(document: Document): string {
