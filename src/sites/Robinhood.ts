@@ -17,16 +17,23 @@ export class Robinhood extends Site {
     }
 
     getTicker(url: string, document: Document): Ticker {
-        var titleElement = document.querySelector("title");
-        var title = titleElement.textContent;
-        var splitTitle = title.split(" ");
-
-        let tickerString = splitTitle[0];
         return new Ticker(
-            tickerString,
+            this.getTickerFromUrl(url),
             this.getName(document),
             this.getTickerType(this, url, document)
         );
+    }
+
+    getTickerFromUrl(url: string) {
+        let splitArray = url.split("/");
+
+        let lastIndex = splitArray.length - 1;
+        let ticker = splitArray[lastIndex];
+        if (ticker.trim().length === 0) {
+            ticker = splitArray[lastIndex - 1];
+        }
+
+        return ticker;
     }
 
     getName(document: Document): string {
