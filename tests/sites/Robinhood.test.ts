@@ -17,6 +17,11 @@ describe("Testing Robinhood", () => {
             new Stock("GME", "GameStop"),
         ],
         [
+            "stock-gme-logged-out",
+            "https://robinhood.com/stocks/GME",
+            new Stock("GME", "GameStop"),
+        ],
+        [
             "etf-spy",
             "https://robinhood.com/stocks/SPY",
             new Etf("SPY", "SPDR S&P 500 ETF"),
@@ -49,6 +54,12 @@ describe("Testing Robinhood", () => {
 
     test.concurrent.each([
         ["stock-gme", "https://robinhood.com/stocks/GME", false, false],
+        [
+            "stock-gme-logged-out",
+            "https://robinhood.com/stocks/GME",
+            false,
+            false,
+        ],
         ["etf-spy", "https://robinhood.com/stocks/SPY", true, false],
         ["crypto-eth", "https://robinhood.com/crypto/ETH", false, true],
         ["stock-brka", "https://robinhood.com/stocks/BRK.A", false, false],
