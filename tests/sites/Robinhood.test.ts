@@ -41,6 +41,16 @@ describe("Testing Robinhood", () => {
             "https://robinhood.com/stocks/BRK.B",
             new Stock("BRK.B", "Berkshire Hathaway"),
         ],
+        [
+            "stock-cake",
+            "https://robinhood.com/stocks/CAKE",
+            new Stock("CAKE", "Cheesecake Factory"),
+        ],
+        [
+            "crypto-cake",
+            "https://robinhood.com/crypto/CAKE",
+            new Crypto("CAKE", "Pancake Swap"),
+        ],
     ])(
         "getTicker on %s and %s, expecting %s",
         (filename: string, url: string, ticker: Ticker) => {
@@ -64,6 +74,8 @@ describe("Testing Robinhood", () => {
         ["crypto-eth", "https://robinhood.com/crypto/ETH", false, true],
         ["stock-brka", "https://robinhood.com/stocks/BRK.A", false, false],
         ["stock-brkb", "https://robinhood.com/stocks/BRK.B", false, false],
+        ["stock-cake", "https://robinhood.com/stocks/CAKE", false, false],
+        ["crypto-cake", "https://robinhood.com/crypto/CAKE", false, true],
     ])(
         "isEtf and isCrypto on %s and %s, expecting %p and %p",
         (filename: string, url: string, isEtf: boolean, isCrypto: boolean) => {
