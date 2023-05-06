@@ -37,7 +37,7 @@ export class Robinhood extends Site {
     }
 
     getName(document: Document): string {
-        return document.querySelector("main header h1").textContent.trim();
+        return document.querySelector("main h1").textContent.trim();
     }
 
     isCrypto(url: string): boolean {
