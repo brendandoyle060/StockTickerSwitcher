@@ -34,7 +34,7 @@ describe("Testing All Sites", () => {
             (ticker: Ticker, rhUrl: string, yfUrl: string) => {
                 if (site.is() === "Robinhood") {
                     expect(site.createUrlForTicker(ticker)).toEqual(rhUrl);
-                } else if (site.is() === "Yahoo! Finance") {
+                } else if (site.is() === "YahooFinance") {
                     expect(site.createUrlForTicker(ticker)).toEqual(yfUrl);
                 }
             }
