@@ -6,6 +6,9 @@ import { Crypto } from "../../src/tickers/Crypto";
 import { Etf } from "../../src/tickers/Etf";
 import { Stock } from "../../src/tickers/Stock";
 import { Ticker } from "../../src/tickers/Ticker";
+import { JSDOM } from "jsdom";
+
+import { getDoc } from "../utils/helpers";
 
 describe("Testing All Sites", () => {
     var rh: Robinhood = new Robinhood();
@@ -36,6 +39,28 @@ describe("Testing All Sites", () => {
                     expect(site.createUrlForTicker(ticker)).toEqual(rhUrl);
                 } else if (site.is() === "YahooFinance") {
                     expect(site.createUrlForTicker(ticker)).toEqual(yfUrl);
+                }
+            }
+        )
+    );
+
+    allSites.forEach((site: Site) =>
+        test.concurrent.each([
+            ["no-results-page", true],
+            ["stock-gme", false],
+            ["etf-spy", false],
+            ["crypto-eth", false],
+        ])(
+            "isNoResultsPage on %s",
+            (filename: string, isNoResultsPage: boolean) => {
+                let html = getDoc(site.name, filename);
+                let dom = new JSDOM(html, { runScripts: "outside-only" });
+                let doc = dom.window.document;
+
+                if (site.is() === "Robinhood") {
+                    expect(site.isNoResultsPage(doc)).toEqual(isNoResultsPage);
+                } else if (site.is() === "YahooFinance") {
+                    expect(site.isNoResultsPage(doc)).toEqual(isNoResultsPage);
                 }
             }
         )

@@ -48,4 +48,10 @@ export class Robinhood extends Site {
         let etfCategory = document.querySelector("#etf-category");
         return !(etfCategory === null);
     }
+
+    isNoResultsPage(document: Document): boolean {
+        return document
+            .querySelector("html title")
+            .textContent.includes("Page not found");
+    }
 }

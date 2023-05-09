@@ -30,4 +30,6 @@ export class Site {
     // Implementations of these methods in subclasses should return a boolean.
     isCrypto(x: any): any {}
     isEtf(document: Document): any {}
+
+    isNoResultsPage(document: Document): any {}
 }

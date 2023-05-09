@@ -82,4 +82,8 @@ export class YahooFinance extends Site {
         );
         return textCleanedUp.includes("Net Assets");
     }
+
+    isNoResultsPage(document: Document): boolean {
+        return !!document.getElementById("lookup-page");
+    }
 }
