@@ -6,51 +6,26 @@ import { Ticker } from "../../src/tickers/Ticker";
 import { JSDOM } from "jsdom";
 
 import { getDoc } from "../utils/helpers";
+import { TestData } from "../utils/TestData";
 
 describe("Testing Robinhood", () => {
     var rh: Robinhood = new Robinhood();
+    var TD: TestData = new TestData();
+
     // Tests for RH -> YF
     test.concurrent.each([
+        [TD.gme.filename, TD.gme.rhUrl, TD.gme.ticker],
         [
-            "stock-gme",
-            "https://robinhood.com/stocks/GME",
-            new Stock("GME", "GameStop"),
+            TD.gmeLoggedOut.filename,
+            TD.gmeLoggedOut.rhUrl,
+            TD.gmeLoggedOut.ticker,
         ],
-        [
-            "stock-gme-logged-out",
-            "https://robinhood.com/stocks/GME",
-            new Stock("GME", "GameStop"),
-        ],
-        [
-            "etf-spy",
-            "https://robinhood.com/stocks/SPY",
-            new Etf("SPY", "SPDR S&P 500 ETF"),
-        ],
-        [
-            "crypto-eth",
-            "https://robinhood.com/crypto/ETH",
-            new Crypto("ETH", "Ethereum"),
-        ],
-        [
-            "stock-brka",
-            "https://robinhood.com/stocks/BRK.A",
-            new Stock("BRK.A", "Berkshire Hathaway"),
-        ],
-        [
-            "stock-brkb",
-            "https://robinhood.com/stocks/BRK.B",
-            new Stock("BRK.B", "Berkshire Hathaway"),
-        ],
-        [
-            "stock-cake",
-            "https://robinhood.com/stocks/CAKE",
-            new Stock("CAKE", "Cheesecake Factory"),
-        ],
-        [
-            "crypto-cake",
-            "https://robinhood.com/crypto/CAKE",
-            new Crypto("CAKE", "Pancake Swap"),
-        ],
+        [TD.spy.filename, TD.spy.rhUrl, TD.spy.ticker],
+        [TD.eth.filename, TD.eth.rhUrl, TD.eth.ticker],
+        [TD.brka.filename, TD.brka.rhUrl, TD.brka.ticker],
+        [TD.brkb.filename, TD.brkb.rhUrl, TD.brkb.ticker],
+        [TD.cakeCrypto.filename, TD.cakeCrypto.rhUrl, TD.cakeCrypto.ticker],
+        [TD.cakeStock.filename, TD.cakeStock.rhUrl, TD.cakeStock.ticker],
     ])(
         "getTicker on %s and %s, expecting %s",
         (filename: string, url: string, ticker: Ticker) => {
@@ -63,19 +38,29 @@ describe("Testing Robinhood", () => {
     );
 
     test.concurrent.each([
-        ["stock-gme", "https://robinhood.com/stocks/GME", false, false],
+        [TD.gme.filename, TD.gme.rhUrl, TD.gme.isEtf, TD.gme.isCrypto],
         [
-            "stock-gme-logged-out",
-            "https://robinhood.com/stocks/GME",
-            false,
-            false,
+            TD.gmeLoggedOut.filename,
+            TD.gmeLoggedOut.rhUrl,
+            TD.gmeLoggedOut.isEtf,
+            TD.gmeLoggedOut.isCrypto,
         ],
-        ["etf-spy", "https://robinhood.com/stocks/SPY", true, false],
-        ["crypto-eth", "https://robinhood.com/crypto/ETH", false, true],
-        ["stock-brka", "https://robinhood.com/stocks/BRK.A", false, false],
-        ["stock-brkb", "https://robinhood.com/stocks/BRK.B", false, false],
-        ["stock-cake", "https://robinhood.com/stocks/CAKE", false, false],
-        ["crypto-cake", "https://robinhood.com/crypto/CAKE", false, true],
+        [TD.spy.filename, TD.spy.rhUrl, TD.spy.isEtf, TD.spy.isCrypto],
+        [TD.eth.filename, TD.eth.rhUrl, TD.eth.isEtf, TD.eth.isCrypto],
+        [TD.brka.filename, TD.brka.rhUrl, TD.brka.isEtf, TD.brka.isCrypto],
+        [TD.brkb.filename, TD.brkb.rhUrl, TD.brkb.isEtf, TD.brkb.isCrypto],
+        [
+            TD.cakeCrypto.filename,
+            TD.cakeCrypto.rhUrl,
+            TD.cakeCrypto.isEtf,
+            TD.cakeCrypto.isCrypto,
+        ],
+        [
+            TD.cakeStock.filename,
+            TD.cakeStock.rhUrl,
+            TD.cakeStock.isEtf,
+            TD.cakeStock.isCrypto,
+        ],
     ])(
         "isEtf and isCrypto on %s and %s, expecting %p and %p",
         (filename: string, url: string, isEtf: boolean, isCrypto: boolean) => {
@@ -90,20 +75,14 @@ describe("Testing Robinhood", () => {
 
     // Tests for YF -> RH
     test.concurrent.each([
-        [new Stock("GME", "GameStop"), "https://robinhood.com/stocks/GME"],
-        [
-            new Etf("SPY", "SPDR S&P 500 ETF"),
-            "https://robinhood.com/stocks/SPY",
-        ],
-        [new Crypto("ETH", "Ethereum"), "https://robinhood.com/crypto/ETH"],
-        [
-            new Stock("BRK.A", "Berkshire Hathaway"),
-            "https://robinhood.com/stocks/BRK.A",
-        ],
-        [
-            new Stock("BRK.B", "Berkshire Hathaway"),
-            "https://robinhood.com/stocks/BRK.B",
-        ],
+        [TD.gme.ticker, TD.gme.rhUrl],
+        [TD.gmeLoggedOut.ticker, TD.gmeLoggedOut.rhUrl],
+        [TD.spy.ticker, TD.spy.rhUrl],
+        [TD.eth.ticker, TD.eth.rhUrl],
+        [TD.brka.ticker, TD.brka.rhUrl],
+        [TD.brkb.ticker, TD.brkb.rhUrl],
+        [TD.cakeCrypto.ticker, TD.cakeCrypto.rhUrl],
+        [TD.cakeStock.ticker, TD.cakeStock.rhUrl],
     ])(
         "createUrlForTicker on %s, expecting %s",
         (ticker: Ticker, url: string) => {
