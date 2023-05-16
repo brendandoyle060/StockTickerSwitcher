@@ -17,6 +17,7 @@ describe("Testing YahooFinance", () => {
         [TD.gme.ticker, TD.gme.yfUrl],
         [TD.spy.ticker, TD.spy.yfUrl],
         [TD.eth.ticker, TD.eth.yfUrl],
+        [TD.grt.ticker, TD.grt.yfUrl],
         [TD.brka.ticker, TD.brka.yfUrl],
         [TD.brkb.ticker, TD.brkb.yfUrl],
     ])(

@@ -4,7 +4,7 @@ import { TickerType } from "../tickers/TickerType";
 export class Site {
     name: string;
     baseUrl: string;
-    EXCEPTION_TICKERS: Map<string, any> = new Map();
+    EXCEPTION_TICKERS: Map<any, any> = new Map();
 
     constructor(name: string, baseUrl: string) {
         this.name = name;

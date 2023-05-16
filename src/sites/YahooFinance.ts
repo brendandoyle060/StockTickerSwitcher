@@ -6,14 +6,13 @@ export class YahooFinance extends Site {
     constructor() {
         super("YahooFinance", `https://finance.yahoo.com`);
 
-        this.EXCEPTION_TICKERS.set("GRT6719", {
-            ticker: "GRT",
-            type: "crypto",
-        });
+        this.EXCEPTION_TICKERS.set(["GRT6719", "crypto"], ["GRT", "crypto"]);
     }
 
     createUrlForTicker(ticker: Ticker): string {
         let s: string = ticker.getHyphenatedTickerSymbol();
+
+        s = this.checkExceptionList(s, ticker.tickerType.toString(), false);
 
         // If the page that we're on is for a stock or ETF, then we can just leave the ticker as-is.
         // If the page that we're on is for a cryptocurrency, then we need
@@ -39,19 +38,49 @@ export class YahooFinance extends Site {
         );
 
         return new Ticker(
-            this.checkExceptionTickerList(tickerString, tickerType.toString()),
+            this.checkExceptionList(tickerString, tickerType.toString(), true),
             this.getName(document),
             tickerType
         );
     }
 
-    checkExceptionTickerList(tickerStr: string, ttStr: string): string {
-        if (
-            this.EXCEPTION_TICKERS.has(tickerStr) &&
-            this.EXCEPTION_TICKERS.get(tickerStr).type === ttStr
-        ) {
-            tickerStr = this.EXCEPTION_TICKERS.get(tickerStr).ticker;
+    /**
+     * There are a few outlier securities which do not abide by the url creation
+     * rules which are normally used on certain sites. To handle these cases, we need to
+     * check to see if our ticker falls into this small set of exceptions,
+     * and if so, to convert it to the correct ticker.
+     *
+     * @param tickerStr - the ticker which we're checking to see if it's on the exception list
+     * @param ttStr - the ticker type of the given ticker
+     * @param isOutgoing - true if we're converting the ticker to
+     * use it for a different site, false if this is an incoming ticker
+     * which we're converting for use on *this* site.
+     * @returns the correct ticker string, whether it needed to be adjusted or not.
+     */
+    checkExceptionList(
+        tickerStr: string,
+        ttStr: string,
+        isOutgoing: boolean
+    ): string {
+        let argArray = [tickerStr, ttStr];
+        let exceptionIterator = this.EXCEPTION_TICKERS.entries();
+        for (let pair of exceptionIterator) {
+            let keyArray;
+            let valArray;
+            if (isOutgoing) {
+                keyArray = pair[0];
+                valArray = pair[1];
+            } else {
+                keyArray = pair[1];
+                valArray = pair[0];
+            }
+
+            if (argArray[0] === keyArray[0] && argArray[1] === keyArray[1]) {
+                tickerStr = valArray[0];
+                break;
+            }
         }
+
         return tickerStr;
     }
 
