@@ -31,6 +31,7 @@ describe("Testing YahooFinance", () => {
         [TD.gme.filename, TD.gme.yfUrl, TD.gme.ticker],
         [TD.spy.filename, TD.spy.yfUrl, TD.spy.ticker],
         [TD.eth.filename, TD.eth.yfUrl, TD.eth.ticker],
+        [TD.grt.filename, TD.grt.yfUrl, TD.grt.ticker],
         [TD.brka.filename, TD.brka.yfUrl, TD.brka.ticker],
         [TD.brkb.filename, TD.brkb.yfUrl, TD.brkb.ticker],
     ])(
@@ -48,6 +49,7 @@ describe("Testing YahooFinance", () => {
         [TD.gme.filename, TD.gme.yfUrl, TD.gme.isEtf, TD.gme.isCrypto],
         [TD.spy.filename, TD.spy.yfUrl, TD.spy.isEtf, TD.spy.isCrypto],
         [TD.eth.filename, TD.eth.yfUrl, TD.eth.isEtf, TD.eth.isCrypto],
+        [TD.grt.filename, TD.grt.yfUrl, TD.grt.isEtf, TD.grt.isCrypto],
         [TD.brka.filename, TD.brka.yfUrl, TD.brka.isEtf, TD.brka.isCrypto],
         [TD.brkb.filename, TD.brkb.yfUrl, TD.brkb.isEtf, TD.brkb.isCrypto],
     ])(

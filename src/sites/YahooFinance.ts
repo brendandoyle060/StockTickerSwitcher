@@ -5,6 +5,11 @@ import { Ticker } from "../tickers/Ticker";
 export class YahooFinance extends Site {
     constructor() {
         super("YahooFinance", `https://finance.yahoo.com`);
+
+        this.EXCEPTION_TICKERS.set("GRT6719", {
+            ticker: "GRT",
+            type: "crypto",
+        });
     }
 
     createUrlForTicker(ticker: Ticker): string {
@@ -23,11 +28,31 @@ export class YahooFinance extends Site {
     }
 
     getTicker(url: string, document: Document): Ticker {
-        return new Ticker(
-            this.getTickerFromPage(document, this.isCrypto(document)),
-            this.getName(document),
-            this.getTickerType(this, document, document)
+        let tickerString: string = this.getTickerFromPage(
+            document,
+            this.isCrypto(document)
         );
+        let tickerType: TickerType = this.getTickerType(
+            this,
+            document,
+            document
+        );
+
+        return new Ticker(
+            this.checkExceptionTickerList(tickerString, tickerType.toString()),
+            this.getName(document),
+            tickerType
+        );
+    }
+
+    checkExceptionTickerList(tickerStr: string, ttStr: string): string {
+        if (
+            this.EXCEPTION_TICKERS.has(tickerStr) &&
+            this.EXCEPTION_TICKERS.get(tickerStr).type === ttStr
+        ) {
+            tickerStr = this.EXCEPTION_TICKERS.get(tickerStr).ticker;
+        }
+        return tickerStr;
     }
 
     getQuoteHeaderInfoId(): string {

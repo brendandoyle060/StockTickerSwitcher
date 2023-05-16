@@ -19,12 +19,14 @@ export class TestData {
     btc: TestTicker;
     cakeCrypto: TestTicker;
     eth: TestTicker;
+    grt: TestTicker;
 
     // Special
     gmeLoggedOut: TestTicker;
     noResultsPage: TestTicker;
 
     constructor() {
+        // Stocks
         this.brka = new TestTicker(
             new Stock("BRK.A", "Berkshire Hathaway"),
             "stock-brka",
@@ -115,6 +117,15 @@ export class TestData {
             "crypto-eth",
             "https://robinhood.com/crypto/ETH",
             "https://finance.yahoo.com/quote/ETH-USD",
+            false,
+            true,
+            false
+        );
+        this.grt = new TestTicker(
+            new Crypto("GRT", "The Graph"),
+            "crypto-grt",
+            "https://robinhood.com/crypto/GRT",
+            "https://finance.yahoo.com/quote/GRT6719-USD",
             false,
             true,
             false
