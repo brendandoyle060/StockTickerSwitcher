@@ -1,4 +1,5 @@
 import { TickerType } from "./TickerType";
+import { Utils } from "../utils/Utils";
 
 export class Ticker {
     symbol: string;
@@ -7,7 +8,8 @@ export class Ticker {
 
     constructor(symbol: string, name: string, tickerType: TickerType) {
         this.symbol = this.convertHyphenToPeriod(symbol);
-        this.name = this.removeExtraWhitespace(name);
+        let utils = new Utils();
+        this.name = utils.removeExtraWhitespace(name);
         this.tickerType = tickerType;
     }
 
@@ -17,17 +19,6 @@ export class Ticker {
 
     convertPeriodToHyphen(symbol: string) {
         return symbol.replace(".", "-");
-    }
-
-    removeExtraWhitespace(str: string): string {
-        let regex = new RegExp("\\s+");
-        let split = str.split(regex);
-        let full = "";
-        split.forEach(function (word) {
-            full = full + word.trim() + " ";
-        });
-        // Get rid of the one extra space at the end before we return
-        return full.trim();
     }
 
     toString(): string {

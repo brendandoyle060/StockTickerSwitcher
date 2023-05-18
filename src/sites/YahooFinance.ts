@@ -1,6 +1,7 @@
 import { Site } from "./Site";
 import { TickerType } from "../tickers/TickerType";
 import { Ticker } from "../tickers/Ticker";
+import { Utils } from "../utils/Utils";
 
 export class YahooFinance extends Site {
     constructor() {
@@ -94,7 +95,8 @@ export class YahooFinance extends Site {
     getName(document: Document): string {
         let name = this.getCompanyHeader(document);
         let nameWithTickerRemoved = name.split(" (")[0];
-        return this.removeExtraWhitespace(nameWithTickerRemoved);
+        let utils = new Utils();
+        return utils.removeExtraWhitespace(nameWithTickerRemoved);
     }
 
     /**
@@ -125,22 +127,6 @@ export class YahooFinance extends Site {
             .querySelector(this.getQuoteHeaderInfoId() + " h1")
             .textContent.trim();
     }
-    /**
-     * Removes large chunks of whitespace from a given string,
-     * replacing each with just a single space.
-     * @param str - text which contains excess whitespace
-     * @returns string with excess whitespace removed
-     */
-    removeExtraWhitespace(str: string): string {
-        let regex = new RegExp("\\s+");
-        let split = str.split(regex);
-        let full = "";
-        split.forEach(function (word) {
-            full = full + word.trim() + " ";
-        });
-        // Get rid of the one extra space at the end before we return
-        return full.trim();
-    }
 
     isCrypto(document: Document): boolean {
         let quoteHeaderInfo = document.querySelector(
@@ -151,7 +137,9 @@ export class YahooFinance extends Site {
 
     isEtf(document: Document): boolean {
         let quoteSummary = document.querySelector("#quote-summary");
-        let textCleanedUp = this.removeExtraWhitespace(
+        let utils = new Utils();
+
+        let textCleanedUp = utils.removeExtraWhitespace(
             quoteSummary.textContent
         );
         return textCleanedUp.includes("Net Assets");
