@@ -24,6 +24,10 @@ export class Robinhood extends Site {
         );
     }
 
+    /**
+     * @param url - this page's url
+     * @returns just the ticker section of the given url
+     */
     getTickerFromUrl(url: string) {
         let splitArray = url.split("/");
 
