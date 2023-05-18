@@ -11,6 +11,11 @@ export class TickerType {
         }
     }
 
+    /**
+     * @param tt - TickerType as a string
+     * @returns true if the given string is within
+     * the VALID_TYPES list, false otherwise
+     */
     isValidType(tt: string): boolean {
         return this.VALID_TYPES.includes(tt);
     }
