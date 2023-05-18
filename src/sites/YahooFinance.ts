@@ -124,7 +124,7 @@ export class YahooFinance extends Site {
 
     isCrypto(document: Document): boolean {
         let quoteHeaderInfo = document.querySelector(
-            this.getQuoteHeaderInfoId() + ""
+            this.getQuoteHeaderInfoId()
         );
         return quoteHeaderInfo.textContent.includes("CoinMarketCap");
     }
