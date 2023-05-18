@@ -6,17 +6,17 @@ export class Ticker {
     tickerType: TickerType;
 
     constructor(symbol: string, name: string, tickerType: TickerType) {
-        this.symbol = this.convertHyphenInTickerSymbol(symbol);
+        this.symbol = this.convertHyphenToPeriod(symbol);
         this.name = this.removeExtraWhitespace(name);
         this.tickerType = tickerType;
     }
 
-    convertHyphenInTickerSymbol(symbol: string) {
+    convertHyphenToPeriod(symbol: string) {
         return symbol.replace("-", ".");
     }
 
-    getHyphenatedTickerSymbol() {
-        return this.symbol.replace(".", "-");
+    convertPeriodToHyphen(symbol: string) {
+        return symbol.replace(".", "-");
     }
 
     removeExtraWhitespace(str: string): string {

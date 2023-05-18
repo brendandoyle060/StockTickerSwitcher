@@ -10,7 +10,7 @@ export class YahooFinance extends Site {
     }
 
     createUrlForTicker(ticker: Ticker): string {
-        let s: string = ticker.getHyphenatedTickerSymbol();
+        let s: string = ticker.convertPeriodToHyphen(ticker.symbol);
 
         s = this.checkExceptionList(s, ticker.tickerType.toString(), false);
 
