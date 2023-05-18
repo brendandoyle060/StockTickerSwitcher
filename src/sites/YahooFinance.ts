@@ -84,6 +84,9 @@ export class YahooFinance extends Site {
         return tickerStr;
     }
 
+    /**
+     * @returns id for the quote header element
+     */
     getQuoteHeaderInfoId(): string {
         return "#quote-header-info";
     }
@@ -94,6 +97,14 @@ export class YahooFinance extends Site {
         return this.removeExtraWhitespace(nameWithTickerRemoved);
     }
 
+    /**
+     * Find the ticker symbol in the page, and separate it from any unnecessary text
+     * which surrounds it.
+     * @param document - DOM of the current page
+     * @param isCrypto - true if the current page is for a cryptocurrency,
+     * false otherwise
+     * @returns ticker symbol
+     */
     getTickerFromPage(document: Document, isCrypto: boolean): string {
         let name = this.getCompanyHeader(document);
         let cleanedUpSymbol = name.split(" (")[1];
@@ -105,12 +116,21 @@ export class YahooFinance extends Site {
         return cleanedUpSymbol;
     }
 
+    /**
+     * @param document - DOM of the current page
+     * @returns text content of the company header element
+     */
     getCompanyHeader(document: Document): string {
         return document
             .querySelector(this.getQuoteHeaderInfoId() + " h1")
             .textContent.trim();
     }
-
+    /**
+     * Removes large chunks of whitespace from a given string,
+     * replacing each with just a single space.
+     * @param str - text which contains excess whitespace
+     * @returns string with excess whitespace removed
+     */
     removeExtraWhitespace(str: string): string {
         let regex = new RegExp("\\s+");
         let split = str.split(regex);
