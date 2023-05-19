@@ -44,6 +44,11 @@ import { Ticker } from "../tickers/Ticker";
         }
     });
 
+    /**
+     * @param url - the current page's url
+     * @returns true if the page is for one specific Ticker,
+     * false if it's any other kind of page.
+     */
     function pageHasTicker(url: string): boolean {
         return (
             url.startsWith("https://robinhood.com/stocks/") ||
