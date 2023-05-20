@@ -80,6 +80,8 @@ describe("Testing Robinhood", () => {
         [TD.grt.rhUrl, TD.grt.isTickerUrl],
         [TD.brka.rhUrl, TD.brka.isTickerUrl],
         [TD.brkb.rhUrl, TD.brkb.isTickerUrl],
+        [TD.homepage.rhUrl, TD.homepage.isTickerUrl],
+        [TD.mostPopular.rhUrl, TD.mostPopular.isTickerUrl],
     ])(
         "isTickerUrl on %s, expecting %s",
         (url: string, isTickerUrl: boolean) => {

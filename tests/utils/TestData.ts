@@ -24,6 +24,9 @@ export class TestData {
     // Special
     gmeLoggedOut: TestTicker;
     noResultsPage: TestTicker;
+    homepage: TestTicker;
+    mostPopular: TestTicker;
+    news: TestTicker;
 
     constructor() {
         // Stocks
@@ -162,6 +165,36 @@ export class TestData {
             false,
             true,
             true
+        );
+        this.homepage = new TestTicker(
+            null,
+            "homepage",
+            "https://robinhood.com/",
+            "https://finance.yahoo.com/",
+            false,
+            false,
+            false,
+            false
+        );
+        this.mostPopular = new TestTicker(
+            null,
+            "most-popular",
+            "https://robinhood.com/lists/robinhood/e8ef4c1f-244f-4db5-a582-c4c37f3c8e8e",
+            "",
+            false,
+            false,
+            false,
+            false
+        );
+        this.news = new TestTicker(
+            null,
+            "news",
+            "",
+            "https://finance.yahoo.com/news/2-strong-buy-dividend-stocks-132619029.html",
+            false,
+            false,
+            false,
+            false
         );
     }
 }

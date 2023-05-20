@@ -72,6 +72,8 @@ describe("Testing YahooFinance", () => {
         [TD.grt.yfUrl, TD.grt.isTickerUrl],
         [TD.brka.yfUrl, TD.brka.isTickerUrl],
         [TD.brkb.yfUrl, TD.brkb.isTickerUrl],
+        [TD.homepage.yfUrl, TD.homepage.isTickerUrl],
+        [TD.news.yfUrl, TD.news.isTickerUrl],
     ])(
         "isTickerUrl on %s, expecting %s",
         (url: string, isTickerUrl: boolean) => {
