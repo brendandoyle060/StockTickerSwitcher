@@ -11,6 +11,7 @@ module.exports = {
         serviceWorker: "./src/serviceWorkers/serviceWorker.ts",
     },
     devtool: "inline-source-map",
+    mode: "production",
     module: {
         rules: [
             {
