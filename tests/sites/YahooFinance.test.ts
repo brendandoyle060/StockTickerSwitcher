@@ -64,4 +64,18 @@ describe("Testing YahooFinance", () => {
             expect(yf.isCrypto(doc)).toEqual(isCrypto);
         }
     );
+
+    test.concurrent.each([
+        [TD.gme.yfUrl, TD.gme.isTickerUrl],
+        [TD.spy.yfUrl, TD.spy.isTickerUrl],
+        [TD.eth.yfUrl, TD.eth.isTickerUrl],
+        [TD.grt.yfUrl, TD.grt.isTickerUrl],
+        [TD.brka.yfUrl, TD.brka.isTickerUrl],
+        [TD.brkb.yfUrl, TD.brkb.isTickerUrl],
+    ])(
+        "isTickerUrl on %s, expecting %s",
+        (url: string, isTickerUrl: boolean) => {
+            expect(yf.isTickerUrl(url)).toEqual(isTickerUrl);
+        }
+    );
 });

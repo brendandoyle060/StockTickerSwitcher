@@ -73,6 +73,20 @@ describe("Testing Robinhood", () => {
         }
     );
 
+    test.concurrent.each([
+        [TD.gme.rhUrl, TD.gme.isTickerUrl],
+        [TD.spy.rhUrl, TD.spy.isTickerUrl],
+        [TD.eth.rhUrl, TD.eth.isTickerUrl],
+        [TD.grt.rhUrl, TD.grt.isTickerUrl],
+        [TD.brka.rhUrl, TD.brka.isTickerUrl],
+        [TD.brkb.rhUrl, TD.brkb.isTickerUrl],
+    ])(
+        "isTickerUrl on %s, expecting %s",
+        (url: string, isTickerUrl: boolean) => {
+            expect(rh.isTickerUrl(url)).toEqual(isTickerUrl);
+        }
+    );
+
     // Tests for YF -> RH
     test.concurrent.each([
         [TD.gme.ticker, TD.gme.rhUrl],

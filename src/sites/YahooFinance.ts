@@ -148,4 +148,8 @@ export class YahooFinance extends Site {
     isNoResultsPage(document: Document): boolean {
         return !!document.getElementById("lookup-page");
     }
+
+    isTickerUrl(url: string): boolean {
+        return url.startsWith("https://finance.yahoo.com/quote/");
+    }
 }

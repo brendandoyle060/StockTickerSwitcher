@@ -20,7 +20,7 @@ import { Ticker } from "../tickers/Ticker";
                 toSite = new Robinhood();
             }
 
-            if (pageHasTicker(request.url)) {
+            if (fromSite.isTickerUrl(request.url)) {
                 let ticker: Ticker = fromSite.getTicker(request.url, document);
                 console.log(ticker.toString());
 
@@ -43,17 +43,4 @@ import { Ticker } from "../tickers/Ticker";
             }
         }
     });
-
-    /**
-     * @param url - the current page's url
-     * @returns true if the page is for one specific Ticker,
-     * false if it's any other kind of page.
-     */
-    function pageHasTicker(url: string): boolean {
-        return (
-            url.startsWith("https://robinhood.com/stocks/") ||
-            url.startsWith("https://robinhood.com/crypto/") ||
-            url.startsWith("https://finance.yahoo.com/quote/")
-        );
-    }
 })();

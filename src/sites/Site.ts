@@ -86,4 +86,11 @@ export class Site {
      * @param document - DOM of the current page.
      */
     isNoResultsPage(document: Document): any {}
+
+    /**
+     * @param url - the current page's url
+     * @returns true if the url indicates that the page is for one specific Ticker,
+     * false if it's any other kind of page.
+     */
+    isTickerUrl(url: string): any {}
 }

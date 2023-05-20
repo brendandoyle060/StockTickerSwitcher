@@ -34,7 +34,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/BRK-A",
             false,
             false,
-            false
+            false,
+            true
         );
         this.brkb = new TestTicker(
             new Stock("BRK.B", "Berkshire Hathaway"),
@@ -43,7 +44,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/BRK-B",
             false,
             false,
-            false
+            false,
+            true
         );
         this.cakeStock = new TestTicker(
             new Stock("CAKE", "Cheesecake Factory"),
@@ -52,7 +54,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/CAKE",
             false,
             false,
-            false
+            false,
+            true
         );
         this.gme = new TestTicker(
             new Stock("GME", "GameStop"),
@@ -61,7 +64,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/GME",
             false,
             false,
-            false
+            false,
+            true
         );
         this.wm = new TestTicker(
             new Stock("WM", "Waste Management"),
@@ -70,7 +74,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/WM",
             false,
             false,
-            false
+            false,
+            true
         );
 
         // Etfs
@@ -81,7 +86,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/SPY",
             true,
             false,
-            false
+            false,
+            true
         );
         this.xsd = new TestTicker(
             new Etf("XSD", "SPDR S&P Semiconductor ETF"),
@@ -90,7 +96,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/XSD",
             true,
             false,
-            false
+            false,
+            true
         );
 
         // Cryptos
@@ -101,7 +108,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/BTC-USD",
             false,
             true,
-            false
+            false,
+            true
         );
         this.cakeCrypto = new TestTicker(
             new Crypto("CAKE", "Pancake Swap"),
@@ -110,7 +118,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/CAKE-USD",
             false,
             true,
-            false
+            false,
+            true
         );
         this.eth = new TestTicker(
             new Crypto("ETH", "Ethereum"),
@@ -119,7 +128,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/ETH-USD",
             false,
             true,
-            false
+            false,
+            true
         );
         this.grt = new TestTicker(
             new Crypto("GRT", "The Graph"),
@@ -128,7 +138,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/GRT6719-USD",
             false,
             true,
-            false
+            false,
+            true
         );
 
         // Special
@@ -139,7 +150,8 @@ export class TestData {
             "https://finance.yahoo.com/quote/GME",
             false,
             false,
-            false
+            false,
+            true
         );
         this.noResultsPage = new TestTicker(
             new Stock("NORES", "No Results Page"),
@@ -148,6 +160,7 @@ export class TestData {
             "https://finance.yahoo.com/quote/NORES",
             false,
             false,
+            true,
             true
         );
     }

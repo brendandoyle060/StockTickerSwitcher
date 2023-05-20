@@ -58,4 +58,11 @@ export class Robinhood extends Site {
             .querySelector("html title")
             .textContent.includes("Page not found");
     }
+
+    isTickerUrl(url: string): boolean {
+        return (
+            url.startsWith("https://robinhood.com/stocks/") ||
+            url.startsWith("https://robinhood.com/crypto/")
+        );
+    }
 }

@@ -10,6 +10,7 @@ export class TestTicker {
     isEtf: boolean;
     isCrypto: boolean;
     isNoResultsPage: boolean;
+    isTickerUrl: boolean;
 
     constructor(
         ticker: Ticker,
@@ -18,7 +19,8 @@ export class TestTicker {
         yfUrl: string,
         isEtf: boolean,
         isCrypto: boolean,
-        isNoResultsPage: boolean
+        isNoResultsPage: boolean,
+        isTickerUrl: boolean
     ) {
         this.ticker = ticker;
         this.filename = filename;
@@ -27,5 +29,6 @@ export class TestTicker {
         this.isEtf = isEtf;
         this.isCrypto = isCrypto;
         this.isNoResultsPage = isNoResultsPage;
+        this.isTickerUrl = isTickerUrl;
     }
 }
