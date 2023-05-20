@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "Robinhood to Yahoo Finance",
-    "description": "Easily jump from a stock's page on robinhood.com to the same ticker on Yahoo! Finance.",
+    "name": "Stock Ticker Switcher",
+    "description": "Easily jump from a stock's page on Robinhood to the same ticker on Yahoo Finance, or vice-versa.",
     "version": "1.1.0",
     "content_scripts": [
         {
