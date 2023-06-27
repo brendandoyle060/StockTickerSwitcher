@@ -61,8 +61,8 @@ export class Robinhood extends Site {
 
     isTickerUrl(url: string): boolean {
         return (
-            url.startsWith("https://robinhood.com/stocks/") ||
-            url.startsWith("https://robinhood.com/crypto/")
+            url.includes("https://robinhood.com") &&
+            (url.includes("stocks") || url.includes("crypto"))
         );
     }
 }

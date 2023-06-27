@@ -81,6 +81,7 @@ describe("Testing Robinhood", () => {
     // isTickerUrl
     test.concurrent.each([
         [TD.gme.rhUrl, TD.gme.isTickerUrl],
+        [TD.gmeLoggedOut.rhUrl, TD.gmeLoggedOut.isTickerUrl],
         [TD.spy.rhUrl, TD.spy.isTickerUrl],
         [TD.eth.rhUrl, TD.eth.isTickerUrl],
         [TD.grt.rhUrl, TD.grt.isTickerUrl],
@@ -102,7 +103,9 @@ describe("Testing Robinhood", () => {
     // createUrlForTicker
     test.concurrent.each([
         [TD.gme.ticker, TD.gme.rhUrl],
-        [TD.gmeLoggedOut.ticker, TD.gmeLoggedOut.rhUrl],
+        // If the user is not logged into RH, we can still  give them the "logged in" url:
+        // RH will redirect them to the appropriate page for their region.
+        [TD.gmeLoggedOut.ticker, TD.gme.rhUrl],
         [TD.spy.ticker, TD.spy.rhUrl],
         [TD.eth.ticker, TD.eth.rhUrl],
         [TD.brka.ticker, TD.brka.rhUrl],
