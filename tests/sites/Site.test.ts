@@ -14,6 +14,7 @@ describe("Testing All Sites", () => {
     let allSites = [rh, yf];
     let TD: TestData = new TestData();
 
+    // createUrlForTicker
     allSites.forEach((site: Site) =>
         test.concurrent.each([
             [TD.wm.ticker, TD.wm.rhUrl, TD.wm.yfUrl],
@@ -31,6 +32,7 @@ describe("Testing All Sites", () => {
         )
     );
 
+    // isNoResultsPage
     allSites.forEach((site: Site) =>
         test.concurrent.each([
             [TD.noResultsPage.filename, TD.noResultsPage.isNoResultsPage],

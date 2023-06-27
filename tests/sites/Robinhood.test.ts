@@ -12,7 +12,11 @@ describe("Testing Robinhood", () => {
     var rh: Robinhood = new Robinhood();
     var TD: TestData = new TestData();
 
+    ////////////////////////////////
     // Tests for RH -> YF
+    ////////////////////////////////
+
+    // getTicker
     test.concurrent.each([
         [TD.gme.filename, TD.gme.rhUrl, TD.gme.ticker],
         [
@@ -37,6 +41,7 @@ describe("Testing Robinhood", () => {
         }
     );
 
+    // isEtf / isCrypto
     test.concurrent.each([
         [TD.gme.filename, TD.gme.rhUrl, TD.gme.isEtf, TD.gme.isCrypto],
         [
@@ -73,6 +78,7 @@ describe("Testing Robinhood", () => {
         }
     );
 
+    // isTickerUrl
     test.concurrent.each([
         [TD.gme.rhUrl, TD.gme.isTickerUrl],
         [TD.spy.rhUrl, TD.spy.isTickerUrl],
@@ -89,7 +95,11 @@ describe("Testing Robinhood", () => {
         }
     );
 
+    ////////////////////////////////
     // Tests for YF -> RH
+    ////////////////////////////////
+
+    // createUrlForTicker
     test.concurrent.each([
         [TD.gme.ticker, TD.gme.rhUrl],
         [TD.gmeLoggedOut.ticker, TD.gmeLoggedOut.rhUrl],

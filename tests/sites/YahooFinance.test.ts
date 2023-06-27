@@ -12,7 +12,11 @@ describe("Testing YahooFinance", () => {
     var yf: YahooFinance = new YahooFinance();
     var TD: TestData = new TestData();
 
+    ////////////////////////////////
     // Tests for RH -> YF
+    ////////////////////////////////
+
+    // createUrlForTicker
     test.concurrent.each([
         [TD.gme.ticker, TD.gme.yfUrl],
         [TD.spy.ticker, TD.spy.yfUrl],
@@ -27,7 +31,11 @@ describe("Testing YahooFinance", () => {
         }
     );
 
+    ////////////////////////////////
     // Tests for YF -> RH
+    ////////////////////////////////
+
+    // getTicker
     test.concurrent.each([
         [TD.gme.filename, TD.gme.yfUrl, TD.gme.ticker],
         [TD.spy.filename, TD.spy.yfUrl, TD.spy.ticker],
@@ -46,6 +54,7 @@ describe("Testing YahooFinance", () => {
         }
     );
 
+    // isEtf / isCrypto
     test.concurrent.each([
         [TD.gme.filename, TD.gme.yfUrl, TD.gme.isEtf, TD.gme.isCrypto],
         [TD.spy.filename, TD.spy.yfUrl, TD.spy.isEtf, TD.spy.isCrypto],
@@ -65,6 +74,7 @@ describe("Testing YahooFinance", () => {
         }
     );
 
+    // isTickerUrl
     test.concurrent.each([
         [TD.gme.yfUrl, TD.gme.isTickerUrl],
         [TD.spy.yfUrl, TD.spy.isTickerUrl],
