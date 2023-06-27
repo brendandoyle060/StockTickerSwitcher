@@ -21,7 +21,7 @@
         "service_worker": "dist/serviceWorker.js"
     },
     "action": {
-        "default_icon": "yahoo-icon.png"
+        "default_icon": "stsIcon128.png"
     },
     "options_ui": {
         "page": "options.html",
