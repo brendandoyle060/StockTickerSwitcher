@@ -24,6 +24,11 @@ describe("Testing Robinhood", () => {
             TD.gmeLoggedOut.rhUrl,
             TD.gmeLoggedOut.ticker,
         ],
+        [
+            TD.ethLoggedOut.filename,
+            TD.ethLoggedOut.rhUrl,
+            TD.ethLoggedOut.ticker,
+        ],
         [TD.spy.filename, TD.spy.rhUrl, TD.spy.ticker],
         [TD.eth.filename, TD.eth.rhUrl, TD.eth.ticker],
         [TD.brka.filename, TD.brka.rhUrl, TD.brka.ticker],
@@ -49,6 +54,12 @@ describe("Testing Robinhood", () => {
             TD.gmeLoggedOut.rhUrl,
             TD.gmeLoggedOut.isEtf,
             TD.gmeLoggedOut.isCrypto,
+        ],
+        [
+            TD.ethLoggedOut.filename,
+            TD.ethLoggedOut.rhUrl,
+            TD.ethLoggedOut.isEtf,
+            TD.ethLoggedOut.isCrypto,
         ],
         [TD.spy.filename, TD.spy.rhUrl, TD.spy.isEtf, TD.spy.isCrypto],
         [TD.eth.filename, TD.eth.rhUrl, TD.eth.isEtf, TD.eth.isCrypto],
@@ -82,6 +93,7 @@ describe("Testing Robinhood", () => {
     test.concurrent.each([
         [TD.gme.rhUrl, TD.gme.isTickerUrl],
         [TD.gmeLoggedOut.rhUrl, TD.gmeLoggedOut.isTickerUrl],
+        [TD.ethLoggedOut.rhUrl, TD.ethLoggedOut.isTickerUrl],
         [TD.spy.rhUrl, TD.spy.isTickerUrl],
         [TD.eth.rhUrl, TD.eth.isTickerUrl],
         [TD.grt.rhUrl, TD.grt.isTickerUrl],
@@ -106,6 +118,7 @@ describe("Testing Robinhood", () => {
         // If the user is not logged into RH, we can still  give them the "logged in" url:
         // RH will redirect them to the appropriate page for their region.
         [TD.gmeLoggedOut.ticker, TD.gme.rhUrl],
+        [TD.ethLoggedOut.ticker, TD.eth.rhUrl],
         [TD.spy.ticker, TD.spy.rhUrl],
         [TD.eth.ticker, TD.eth.rhUrl],
         [TD.brka.ticker, TD.brka.rhUrl],

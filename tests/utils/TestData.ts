@@ -23,6 +23,7 @@ export class TestData {
 
     // Special
     gmeLoggedOut: TestTicker;
+    ethLoggedOut: TestTicker;
     noResultsPage: TestTicker;
     homepage: TestTicker;
     mostPopular: TestTicker;
@@ -153,6 +154,16 @@ export class TestData {
             "https://finance.yahoo.com/quote/GME",
             false,
             false,
+            false,
+            true
+        );
+        this.ethLoggedOut = new TestTicker(
+            new Crypto("ETH", "Ethereum"),
+            "loggedOut-crypto-eth",
+            "https://robinhood.com/us/en/crypto/ETH/",
+            "https://finance.yahoo.com/quote/ETH-USD",
+            false,
+            true,
             false,
             true
         );
