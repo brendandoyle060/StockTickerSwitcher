@@ -148,7 +148,7 @@ export class TestData {
         // Special
         this.gmeLoggedOut = new TestTicker(
             new Stock("GME", "GameStop"),
-            "stock-gme-logged-out",
+            "loggedOut-stock-gme",
             "https://robinhood.com/us/en/stocks/GME/",
             "https://finance.yahoo.com/quote/GME",
             false,
