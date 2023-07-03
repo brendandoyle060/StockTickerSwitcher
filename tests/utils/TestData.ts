@@ -14,6 +14,7 @@ export class TestData {
     // Etfs
     spy: TestTicker;
     xsd: TestTicker;
+    spxs: TestTicker;
 
     // Cryptos
     btc: TestTicker;
@@ -98,6 +99,16 @@ export class TestData {
             "etf-xsd",
             "https://robinhood.com/stocks/XSD",
             "https://finance.yahoo.com/quote/XSD",
+            true,
+            false,
+            false,
+            true
+        );
+        this.spxs = new TestTicker(
+            new Etf("SPXS", "Daily S&P 500 Bear 3X"),
+            "etf-spxs",
+            "https://robinhood.com/stocks/SPXS",
+            "https://finance.yahoo.com/quote/SPXS",
             true,
             false,
             false,
