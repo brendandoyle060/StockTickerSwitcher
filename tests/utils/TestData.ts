@@ -7,32 +7,56 @@ export class TestData {
     ////////////////////////////////
     // Stocks
     ////////////////////////////////
-    brka: TestTicker;
-    brkb: TestTicker;
-    cakeStock: TestTicker;
+
+    // Standard
     gme: TestTicker;
     wm: TestTicker;
+
+    // Tickers which have a period in the url on RH (BRK.A and BRK.B)
+    brka: TestTicker;
+    brkb: TestTicker;
+
+    // Stocks which have the same ticker as a crypto
+    cakeStock: TestTicker;
 
     ////////////////////////////////
     // Etfs
     ////////////////////////////////
+
+    // Standard
     spy: TestTicker;
     xsd: TestTicker;
+
+    // Leveraged (3x) Bear ETFs
     spxs: TestTicker;
 
     ////////////////////////////////
     // Cryptos
     ////////////////////////////////
+
+    // Standard
     btc: TestTicker;
-    cakeCrypto: TestTicker;
     eth: TestTicker;
     grt: TestTicker;
 
+    // Cryptos with the same ticker as a stock
+    cakeCrypto: TestTicker;
+
     ////////////////////////////////
-    // Special
+    // User is logged out
     ////////////////////////////////
+
+    // Stock logged out
     gmeLoggedOut: TestTicker;
+
+    // Crypto logged out
     ethLoggedOut: TestTicker;
+
+    ////////////////////////////////
+    // Other
+    ////////////////////////////////
+
+    // Non-ticker pages
     noResultsPage: TestTicker;
     homepage: TestTicker;
     mostPopular: TestTicker;
