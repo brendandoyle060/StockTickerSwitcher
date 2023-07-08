@@ -4,25 +4,33 @@ import { Stock } from "../../src/tickers/Stock";
 import { TestTicker } from "./TestTicker";
 
 export class TestData {
+    ////////////////////////////////
     // Stocks
+    ////////////////////////////////
     brka: TestTicker;
     brkb: TestTicker;
     cakeStock: TestTicker;
     gme: TestTicker;
     wm: TestTicker;
 
+    ////////////////////////////////
     // Etfs
+    ////////////////////////////////
     spy: TestTicker;
     xsd: TestTicker;
     spxs: TestTicker;
 
+    ////////////////////////////////
     // Cryptos
+    ////////////////////////////////
     btc: TestTicker;
     cakeCrypto: TestTicker;
     eth: TestTicker;
     grt: TestTicker;
 
+    ////////////////////////////////
     // Special
+    ////////////////////////////////
     gmeLoggedOut: TestTicker;
     ethLoggedOut: TestTicker;
     noResultsPage: TestTicker;
@@ -31,7 +39,9 @@ export class TestData {
     news: TestTicker;
 
     constructor() {
+        ////////////////////////////////
         // Stocks
+        ////////////////////////////////
         this.brka = new TestTicker(
             new Stock("BRK.A", "Berkshire Hathaway"),
             "stock-brka",
@@ -83,7 +93,9 @@ export class TestData {
             true
         );
 
+        ////////////////////////////////
         // Etfs
+        ////////////////////////////////
         this.spy = new TestTicker(
             new Etf("SPY", "SPDR S&P 500 ETF"),
             "etf-spy",
@@ -115,7 +127,9 @@ export class TestData {
             true
         );
 
+        ////////////////////////////////
         // Cryptos
+        ////////////////////////////////
         this.btc = new TestTicker(
             new Crypto("BTC", "Bitcoin"),
             "crypto-btc",
@@ -157,7 +171,9 @@ export class TestData {
             true
         );
 
+        ////////////////////////////////
         // Special
+        ////////////////////////////////
         this.gmeLoggedOut = new TestTicker(
             new Stock("GME", "GameStop"),
             "loggedOut-stock-gme",
