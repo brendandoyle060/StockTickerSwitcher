@@ -88,8 +88,8 @@ export class YahooFinance extends Site {
     /**
      * @returns id for the quote header element
      */
-    getQuoteHeaderInfoId(): string {
-        return "#quote-header-info";
+    getHeaderSection(): string {
+        return "section.main section.container div.top";
     }
 
     getName(document: Document): string {
@@ -124,19 +124,19 @@ export class YahooFinance extends Site {
      */
     getCompanyHeader(document: Document): string {
         return document
-            .querySelector(this.getQuoteHeaderInfoId() + " h1")
+            .querySelector(this.getHeaderSection() + " h1")
             .textContent.trim();
     }
 
     isCrypto(document: Document): boolean {
-        let quoteHeaderInfo = document.querySelector(
-            this.getQuoteHeaderInfoId()
-        );
+        let quoteHeaderInfo = document.querySelector(this.getHeaderSection());
         return quoteHeaderInfo.textContent.includes("CoinMarketCap");
     }
 
     isEtf(document: Document): boolean {
-        let quoteSummary = document.querySelector("#quote-summary");
+        let quoteSummary = document.querySelector(
+            "section.main div[data-testid='quote-statistics']"
+        );
         let utils = new Utils();
 
         let textCleanedUp = utils.removeExtraWhitespace(
@@ -146,7 +146,7 @@ export class YahooFinance extends Site {
     }
 
     isNoResultsPage(document: Document): boolean {
-        return !!document.getElementById("lookup-page");
+        return !!document.getElementById("module-error404");
     }
 
     isTickerUrl(url: string): boolean {
